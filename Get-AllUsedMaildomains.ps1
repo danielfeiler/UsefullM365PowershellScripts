@@ -1,4 +1,48 @@
-﻿[CmdletBinding()]
+﻿<#
+.SYNOPSIS
+    This script will create a HTML file with an overview of all used mail domains in your Active Directory.
+.DESCRIPTION
+    This script will create a HTML file with an overview of all used mail domains in your Active Directory.
+    The script will list all used mail domains and show how many groups, users and public folders are using the domain.
+    The script will also show if the domain is the primary domain for the object.
+    The script will create a HTML file in the location specified in the OutputFile parameter.
+.PARAMETER OutputFile
+    The path to the file where the HTML output should be saved.
+    Default is C:\temp\DomainOverview.html
+.EXAMPLE
+    Get-AllUsedMaildomains.ps1 -OutputFile "C:\temp\DomainOverview.html"
+    This will create a HTML file with an overview of all used mail domains in your Active Directory and save it to C:\temp\DomainOverview.html
+.NOTES
+    File Name      : Get-AllUsedMaildomains.ps1
+    Author         : Daniel Feiler
+    Prerequisite   : PowerShell V5.1 and the Active Directory module installed. 
+    You can install the Active Directory module on Windows Server with the following command: Install-WindowsFeature RSAT-AD-PowerShell
+    for Windows 10/11 you can install the RSAT tools with Add-WindowsCapability -Online -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~
+    For windows 10 older than 1809 you need to download the RSAT tools from the Microsoft website.
+#>
+
+<#PSScriptInfo
+.VERSION 1.0
+.GUID 5d96470d-c421-4e20-82fe-9b833e6bc385
+.AUTHOR Daniel Feiler
+.COMPANYNAME
+.COPYRIGHT Daniel Feiler 2025
+.TAGS Active Directory, Mail, Domain
+.LICENSEURI https://www.gnu.org/licenses/gpl-3.0
+.PROJECTURI https://github.com/danielfeiler/UsefullM365PowershellScripts
+.ICONURI
+.EXTERNALMODULEDEPENDENCIES ActiveDirectory
+.REQUIREDSCRIPTS
+.EXTERNALSCRIPTDEPENDENCIES
+.RELEASENOTES
+.PRIVATEDATA
+
+#>
+
+#Requires -Version 5.1
+#Requires -Modules ActiveDirectory
+
+[CmdletBinding()]
 param(
     [string]$OutputFile = "C:\temp\DomainOverview.html"
 )
